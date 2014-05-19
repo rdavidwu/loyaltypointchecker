@@ -8,6 +8,7 @@ class LoyaltyAccountController < ApplicationController
 
 	#GET /addloyaltyaccount
 	def add_account
+		render 
 	end
 
 	#POST /addloyaltyaccount
@@ -34,6 +35,8 @@ class LoyaltyAccountController < ApplicationController
 				@name.gsub!('!', '').strip!
 
 			else
+				error_msg = page.parser.css('.error-text').text().gsub(/(\t)|(\n)/, '').strip
+				flash[:error] = error_msg
 				render 'add_account'	
 			end
 		elsif @loyalty_program == "aeroplan"

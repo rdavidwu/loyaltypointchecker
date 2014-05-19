@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DemoApp</title>
+  <title>Loyalty Point Checker</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	
+ 	<% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
 
-<%= yield %>
+	<%= yield %>
 
+	<div class="footer">
+		<p> Developed by <a href="http://www.rdavidwu.com">David Wu</a></p>
+	</div>
 </body>
+
 </html>
