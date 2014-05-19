@@ -1,12 +1,14 @@
+<div class="container">
+	
+	<% if @loyalty_program == "airmiles" %>
+		<p> Hi <%= @name %> </p>
+		<p> You have <%= @cashmiles %> cash miles </p>
+		<p> and <%= @dreammiles %> dream miles </p>
 
-<% if @loyalty_program == "airmiles" %>
-	<p> Hi <%= @name %> </p>
-	<p> You have <%= @cashmiles %> cash miles </p>
-	<p> and <%= @dreammiles %> dream miles </p>
-
-<% elsif @loyalty_program == "aeroplan" %>
-	<p> Hi <%= @name %> </p>
-	<p> You have <%= @mileage %> aeroplan miles </p>
-<% else %>
-	<p> You did not select a loyalty program </p>
-<% end %>
+	<% elsif @loyalty_program == "aeroplan" %>
+		<p> Hi <%= @name %> </p>
+		<p> You have <%= @mileage %> aeroplan miles </p>
+	<% else %>
+		<p> You did not select a loyalty program </p>
+	<% end %>
+</div>

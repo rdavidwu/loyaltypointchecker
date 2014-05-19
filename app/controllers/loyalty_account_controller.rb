@@ -36,7 +36,7 @@ class LoyaltyAccountController < ApplicationController
 
 			else
 				error_msg = page.parser.css('.error-text').text().gsub(/(\t)|(\n)/, '').strip
-				flash[:error] = error_msg
+				flash.now[:error] = error_msg
 				render 'add_account'	
 			end
 		elsif @loyalty_program == "aeroplan"
@@ -60,6 +60,8 @@ class LoyaltyAccountController < ApplicationController
  					@mileage = page.parser.css('.mileage').children.children.inner_html.gsub(/\D/, '')
  					@name = page.parser.css('.name').text().gsub(',','')
  				else
+ 					error_msg = page.parser.css('.mainErrorBodyLoginFailed').text()
+ 					flash.now[:error] = error_msg
  					render 'add_account'
  				end
 			end

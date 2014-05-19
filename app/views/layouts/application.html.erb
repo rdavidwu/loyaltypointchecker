@@ -7,15 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
- 	<% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
+	<%= nav_bar :brand => "Loyalty Point Checker",:responsive=>true, :brand_link => checkloyaltyaccount_path  %>
+
+	<%= render 'layouts/flash_messages' %>
 
 	<%= yield %>
 
-	<div class="footer">
-		<p> Developed by <a href="http://www.rdavidwu.com">David Wu</a></p>
+	<div id="footer">
+		<div class="container">
+			<p class="footer-text"> Developed by <a href="http://www.rdavidwu.com">David Wu</a></p>
+		</div>
 	</div>
 </body>
 
