@@ -1,5 +1,6 @@
 DemoApp::Application.routes.draw do
   #resources :users
+  get '/' => 'loyalty_account#add_account'
 
   get 'myloyaltytracker' => 'loyalty_account#show'
 
