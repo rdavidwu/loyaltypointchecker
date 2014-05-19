@@ -1,4 +1,14 @@
 DemoApp::Application.routes.draw do
+  #resources :users
+
+  get 'myloyaltytracker' => 'loyalty_account#show'
+
+  get 'addloyaltyaccount' => 'loyalty_account#add_account'
+  post 'addloyaltyaccount' => 'loyalty_account#connect'
+
+  get 'checkloyaltyaccount' => 'loyalty_account#add_account'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

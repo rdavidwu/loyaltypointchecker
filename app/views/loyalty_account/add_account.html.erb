@@ -1,0 +1,37 @@
+
+
+<h2>Loyalty point checker</h2>
+<h4>This is a simple application that uses Mechanize to auto-fill web forms to retrieve the amount of points you have from your loyalty plan provider. </h4>
+<h4>The original objective of doing this was to create an application in where the user can create an account and then log their information for each of their loyalty programs, allowing the user to check all of his/her points from all their loyalty providers at the same time in one app.</h4>
+<h4> However, this application only shows the logging-in part, because I figured people would not want to store their actual login information at this early stage.</h4> 
+<h4>You can check the code at <a>.......github.......</a> </h4>
+<h4>I have only made Airmiles and Aeroplan available for now. Sorry if you dont have any of those =/ </h4>
+
+
+<%= form_tag 'addloyaltyaccount', :id=> 'form_add_account' do %>
+
+	<select name="loyalty_account"> 
+		<option class="placeholder" selected disabled>Select Loyalty Account</option>
+		<option value="airmiles">Airmiles</option>
+		<option value="aeroplan">Aeroplan</option>
+	</select>
+	<br>
+  	Account#: <input id="form_input_username" type="text" name="username"> <br>
+	Password/Pin: <input id="form_input_password" type="password" name="password"> <br>
+	<input id="btn_submit" type="submit" value="Submit">
+<% end %>
+
+<script>
+$( "#form_add_account" ).submit(function( event ) {
+	if( $('#form_input_username').val() ===  "" || $('#form_input_password').val() ===  "" ){
+		alert( "You need to fill both fields." );	
+		event.preventDefault();
+	}else if ( $('select[name="loyalty_account"]').val() === null ){
+		alert( "You need to select a loyalty program.");
+		event.preventDefault();
+	}else{
+		$('#btn_submit').attr('disabled','disabled');
+	}
+});
+
+</script>
