@@ -1,30 +1,31 @@
 
 <div class="container">
-	<h2>Loyalty point checker</h2>
-	
-		<h5>This is a simple application that uses Mechanize to auto-fill web forms to retrieve the amount of points you have from your loyalty plan provider. </h5>
-		<h5>The original objective of doing this was to create an application in where the user can create an account and then log their information for each of their loyalty programs, allowing the user to check all of his/her points from all their loyalty providers at the same time in one app. This however, only shows the logging-in part for each of the loyalty program providers.</h5>
-		<h5> This application only shows the logging-in part, because I figured people would not want to store their actual login information at this early stage.</h5> 
-		<h5>Please note that none of the account information you enter here is being saved anywhere.</h5>
-		<h5>You can check the code <a href="https://github.com/rdavidwu/loyaltypointchecker" target="_blank">here</a> </h5>
-		<h5>I have only made Airmiles and Aeroplan available for now. Sorry if you dont have any of those =/ </h5>
+	<div class="content">
+		<h2>Loyalty point checker</h2>
+		
+			<h5>This is a simple application that uses Mechanize to auto-fill web forms to retrieve the amount of points you have from your loyalty plan provider. </h5>
+			<h5>The original objective of doing this was to create an application in where the user can create an account and then log their information for each of their loyalty programs, allowing the user to check all of his/her points from all their loyalty providers at the same time in one app. This however, only shows the logging-in part for each of the loyalty program providers.</h5>
+			<h5> This application only shows the logging-in part, because I figured people would not want to store their actual login information at this early stage.</h5> 
+			<h5>Please note that none of the account information you enter here is being saved anywhere.</h5>
+			<h5>You can check the code <a href="https://github.com/rdavidwu/loyaltypointchecker" target="_blank">here</a> </h5>
+			<h5>I have only made Airmiles and Aeroplan available for now. Sorry if you dont have any of those =/ </h5>
 
 
-	<div class="span9">
-		<%= form_tag 'addloyaltyaccount', :id=> 'form_add_account' do %>
+		<div class="span9">
+			<%= form_tag 'addloyaltyaccount', :id=> 'form_add_account' do %>
 
-			<select name="loyalty_account"> 
-				<option class="placeholder" selected disabled>Select Loyalty Account</option>
-				<option value="airmiles">Airmiles</option>
-				<option value="aeroplan">Aeroplan</option>
-			</select>
-			<br>
-		  	<label class="control-label">Account#:</label> <input class="form-control" id="form_input_username" type="text" name="username"> <br>
-			<label>Password/Pin:</label> <input id="form_input_password" type="password" name="password"> <br>
-			<input class="btn btn-default" id="btn_submit" type="submit" value="Submit">
-		<% end %>
+				<select name="loyalty_account"> 
+					<option class="placeholder" selected disabled>Select Loyalty Account</option>
+					<option value="airmiles">Airmiles</option>
+					<option value="aeroplan">Aeroplan</option>
+				</select>
+				<br>
+			  	<label class="control-label">Account#:</label> <input class="form-control" id="form_input_username" type="text" name="username"> <br>
+				<label>Password/Pin:</label> <input id="form_input_password" type="password" name="password"> <br>
+				<input class="btn btn-default" id="btn_submit" type="submit" value="Check My Points">
+			<% end %>
+		</div>
 	</div>
-
 </div>
 
 <script>

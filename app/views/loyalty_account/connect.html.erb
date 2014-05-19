@@ -1,14 +1,19 @@
 <div class="container">
-	
-	<% if @loyalty_program == "airmiles" %>
-		<p> Hi <%= @name %> </p>
-		<p> You have <%= @cashmiles %> cash miles </p>
-		<p> and <%= @dreammiles %> dream miles </p>
+	<div class="content">
+		<% if @loyalty_program == "airmiles" %>
+			<h2>Air Miles Points</h2>
+			<h4> Hi <%= @name %> </h4>
+			<h4> You have <%= @cashmiles %> cash miles </h4>
+			<h4> and <%= @dreammiles %> dream miles </h4>
 
-	<% elsif @loyalty_program == "aeroplan" %>
-		<p> Hi <%= @name %> </p>
-		<p> You have <%= @mileage %> aeroplan miles </p>
-	<% else %>
-		<p> You did not select a loyalty program </p>
-	<% end %>
+		<% elsif @loyalty_program == "aeroplan" %>
+			<h2>Aeroplan Points</h2>
+			<h4> Hi <%= @name %> </h4>
+			<h4> You have <%= @mileage %> aeroplan miles </h4>
+		<% else %>
+			<h4> You did not select a loyalty program </h4>
+		<% end %>
+
+		<%= link_to "Back to Form", checkloyaltyaccount_path, class: "btn btn-default back_btn", type: 'button' %>
+	</div>
 </div>

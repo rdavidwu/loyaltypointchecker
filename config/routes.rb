@@ -8,6 +8,9 @@ DemoApp::Application.routes.draw do
 
   get 'checkloyaltyaccount' => 'loyalty_account#add_account'
 
+  match '/404' => 'errors#not_found', via: [:get, :post]
+  match '/422' => 'errors#server_error', via: [:get, :post]
+  match '/500' => 'errors#server_error', via: [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
