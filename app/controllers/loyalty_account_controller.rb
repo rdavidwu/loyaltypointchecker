@@ -49,10 +49,11 @@ class LoyaltyAccountController < ApplicationController
 			if account_num.size < 9 
 				render 'add_account'
 			else
-				aeroplan_form.CUST1 = account_num[0..2]
-		    aeroplan_form.CUST2 = account_num[3..5]
-		    aeroplan_form.CUST3 = account_num[6..8] 
-		    aeroplan_form.pin = password
+				# aeroplan_form.CUST1 = account_num[0..2]
+		  #   aeroplan_form.CUST2 = account_num[3..5]
+		  #   aeroplan_form.CUST3 = account_num[6..8] 
+		  #   aeroplan_form.pin = password
+		  
 
 		    page = aeroplan_form.submit()
 
