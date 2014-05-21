@@ -44,12 +44,16 @@ gem 'nokogiri'
 gem 'mechanize'
 
 gem 'twitter-bootstrap-rails'
+
+gem 'delayed_job_active_record'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+#Use unicorn as the app server
+gem 'unicorn'
 
+gem 'foreman'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
