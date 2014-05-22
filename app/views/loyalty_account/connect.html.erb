@@ -18,11 +18,9 @@ function updateStatus(){
 	var url = $('#result_container').attr('data-url');
 	$.get( url, function( data ) {
 		if(data.is_done == true){
-			debugger;
 			$('#result').html(data.result);
 			$('#wait_container').hide();
 			$('#result_container').show();
-			alert( data.result);
 		}else{
 			setTimeout(updateStatus, 2000);
 		}
