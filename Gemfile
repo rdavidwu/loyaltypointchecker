@@ -54,6 +54,8 @@ gem 'delayed_job_active_record'
 gem 'unicorn'
 
 gem 'foreman'
+
+gem 'rush'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
