@@ -9,6 +9,8 @@ DemoApp::Application.routes.draw do
 
   get 'checkloyaltyaccount' => 'loyalty_account#add_account'
 
+  get 'checkloyaltyprogress' => 'loyalty_account#check_done_scraping'
+
   match '/404' => 'errors#not_found', via: [:get, :post]
   match '/422' => 'errors#server_error', via: [:get, :post]
   match '/500' => 'errors#server_error', via: [:get, :post]

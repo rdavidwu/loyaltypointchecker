@@ -1,19 +1,31 @@
-<div class="container">
+<div class="container" id="result_container" data-url="/checkloyaltyprogress?id=<%=@random_id%>">
 	<div class="content">
-		<% if @loyalty_program == "airmiles" %>
-			<h2>Air Miles Points</h2>
-			<h4> Hi <%= @name %> </h4>
-			<h4> You have <%= @cashmiles %> cash miles </h4>
-			<h4> and <%= @dreammiles %> dream miles </h4>
-
-		<% elsif @loyalty_program == "aeroplan" %>
-			<h2>Aeroplan Points</h2>
-			<h4> Hi <%= @name %> </h4>
-			<h4> You have <%= @mileage %> aeroplan miles </h4>
-		<% else %>
-			<h4> You did not select a loyalty program </h4>
-		<% end %>
+		<h4 id="result"></h4>
 
 		<%= link_to "Back to Form", checkloyaltyaccount_path, class: "btn btn-default back_btn", type: 'button' %>
 	</div>
 </div>
+<div id="wait_container">
+	<h2>Loading. Please Wait...</h2>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	setTimeout(updateStatus, 2000);
+});
+
+function updateStatus(){
+	var url = $('#result_container').attr('data-url');
+	$.get( url, function( data ) {
+		if(data.is_done == true){
+			debugger;
+			$('#result').html(data.result);
+			$('#wait_container').hide();
+			$('#result_container').show();
+			alert( data.result);
+		}else{
+			setTimeout(updateStatus, 2000);
+		}
+	});
+}
+</script>

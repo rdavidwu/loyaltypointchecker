@@ -5,3 +5,7 @@
 .back_btn{
 	margin-top: 20px;
 }
+
+#result_container{
+	display: none;
+}
