@@ -21,7 +21,7 @@ class ScrapedResult < ActiveRecord::Base
 		else
 			error_msg = page.parser.css('.error-text').text().gsub(/(\t)|(\n)/, '').strip
 			self.status = "error"
-			self.result = error_msg
+			self.result = "Incorrect Airmiles Number or Pin was entered.\n#{error_msg}"
 	#			flash.now[:error] = error_msg
 	#			render 'add_account'	
 		end
