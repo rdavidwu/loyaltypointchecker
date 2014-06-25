@@ -57,6 +57,9 @@ gem 'delayed_job_active_record'
 gem 'unicorn'
 
 gem 'foreman'
+ 
+gem 'symmetric-encryption'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
