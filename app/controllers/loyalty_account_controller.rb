@@ -24,7 +24,7 @@ class LoyaltyAccountController < ApplicationController
 	def connect
 		#pp params
 		@loyalty_program = params["loyalty_account"]
-	  	account_num = params["username"]
+	  account = params["username"]
 		password = params["password"]
 
 		scraped_result = ScrapedResult.create 
@@ -33,9 +33,11 @@ class LoyaltyAccountController < ApplicationController
 		scraped_result.save!
 
 		if @loyalty_program == "airmiles"
-			scraped_result.delay.airmiles_scrape(account_num, SymmetricEncryption.encrypt(password))
+			scraped_result.delay.airmiles_scrape(account, SymmetricEncryption.encrypt(password))
 		elsif @loyalty_program == "aeroplan"
-			scraped_result.delay.aeroplan_scrape(account_num, SymmetricEncryption.encrypt(password))
+			scraped_result.delay.aeroplan_scrape(account, SymmetricEncryption.encrypt(password))
+		elsif @loyalty_program == "starbucks"
+			scraped_result.delay.starbucks_scrape(account, SymmetricEncryption.encrypt(password))
 		end
 
 	end
