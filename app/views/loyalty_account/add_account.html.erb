@@ -18,6 +18,7 @@
 					<option class="placeholder" selected disabled>Select Loyalty Account</option>
 					<option value="airmiles">Airmiles</option>
 					<option value="starbucks">Starbucks</option>
+					<option value="united">United</option>
 					<!-- <option value="aeroplan">Aeroplan</option> -->
 				</select>
 				<br>
@@ -38,7 +39,9 @@ $( "#select_loyalty" ).change( function(){
 		$('#label_account').html('Airmiles Collector #:');
 	}else if( selected === "starbucks"){
 		$('#label_account').html('Username or email:');
-	}else{
+	}else if ( selected === "united"){
+		$('#label_account').html('MileagePlus Number or Username:');
+	}else{	
 		//should not happen
 	}
 });

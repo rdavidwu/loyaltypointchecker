@@ -38,6 +38,8 @@ class LoyaltyAccountController < ApplicationController
 			scraped_result.delay.aeroplan_scrape(account, SymmetricEncryption.encrypt(password))
 		elsif @loyalty_program == "starbucks"
 			scraped_result.delay.starbucks_scrape(account, SymmetricEncryption.encrypt(password))
+		elsif @loyalty_program == "united"
+			scraped_result.delay.united_scrape(account, SymmetricEncryption.encrypt(password))
 		end
 
 	end

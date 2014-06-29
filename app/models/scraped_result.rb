@@ -111,4 +111,41 @@ class ScrapedResult < ActiveRecord::Base
 			self.save!
 		end
 	end
+
+
+	def united_scrape(username, password)
+		agent = Mechanize.new
+		agent.user_agent_alias = 'Mac Safari'
+		pass = SymmetricEncryption.decrypt(password)
+
+		page = agent.get('http://www.united.com/web/en-US/apps/account/account.aspx')
+
+		if page.forms.empty?
+			self.status = "error"
+			self.result = "United could not be accessed. Please try again later."
+			self.save!
+		else
+			united_form = page.form_with(:dom_id => "aspnetForm")
+			united_form.field_with(:dom_id => "ctl00_ContentInfo_SignIn_onepass_txtField").value = username
+			united_form.field_with(:dom_id => "ctl00_ContentInfo_SignIn_password_txtPassword").value = pass
+			
+			page = united_form.submit(united_form.button_with( :value => 'Sign In (Secure)'))
+
+			if page.uri.to_s.include? "https://www.united.com/web/en-US/apps/account/signin.aspx"	
+				self.status = "error"
+				self.result = "Incorrect username or password. Please try again."					
+			else		
+				rewards = page.parser.css('#ctl00_ContentInfo_AccountSummary_lblMileageBalanceNew').text()
+				name = page.parser.css('#ctl00_ContentInfo_AccountSummary_lblOPNameNew').text()
+				self.status = "success"
+				if rewards.empty?	#it only exists if there are rewards
+					self.result = "there are currently no rewards for this account"
+				else
+					self.result = "Hi #{name}<br> Your have #{rewards} miles"
+				end		
+			end
+			self.save!
+		end
+	end
+
 end
