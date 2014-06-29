@@ -14,7 +14,7 @@
  */
 
 
-#footer {
+.footer {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -30,7 +30,6 @@
 
 .content{
 	margin-bottom: 60px;
-	min-height: 200px;
 }
 
 @media (max-width: 979px){
