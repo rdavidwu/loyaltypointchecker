@@ -27,19 +27,19 @@ class LoyaltyAccountController < ApplicationController
 	  account = params["username"]
 		password = params["password"]
 
-		scraped_result = ScrapedResult.create 
-		@random_id = scraped_result.id 
-		scraped_result.status = "in_progress"
-		scraped_result.save!
+		@scraped_result = ScrapedResult.create 
+		@random_id = @scraped_result.id 
+		@scraped_result.status = "in_progress"
+		@scraped_result.save!
 
 		if @loyalty_program == "airmiles"
-			scraped_result.delay.airmiles_scrape(account, SymmetricEncryption.encrypt(password))
+			@scraped_result.airmiles_scrape(account, SymmetricEncryption.encrypt(password))
 		elsif @loyalty_program == "aeroplan"
-			scraped_result.delay.aeroplan_scrape(account, SymmetricEncryption.encrypt(password))
+			@scraped_result.aeroplan_scrape(account, SymmetricEncryption.encrypt(password))
 		elsif @loyalty_program == "starbucks"
-			scraped_result.delay.starbucks_scrape(account, SymmetricEncryption.encrypt(password))
+			@scraped_result.starbucks_scrape(account, SymmetricEncryption.encrypt(password))
 		elsif @loyalty_program == "united"
-			scraped_result.delay.united_scrape(account, SymmetricEncryption.encrypt(password))
+			@scraped_result.united_scrape(account, SymmetricEncryption.encrypt(password))
 		end
 
 	end

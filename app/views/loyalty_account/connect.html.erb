@@ -1,6 +1,6 @@
 <div class="container" id="result_container" data-url="/checkloyaltyprogress?id=<%=@random_id%>">
 	<div class="content">
-		<h4 id="result"></h4>
+		<h4 id="result"><%=raw @scraped_result.result %></h4>
 
 		<%= link_to "Back to Form", '/', class: "btn btn-default back_btn", type: 'button' %>
 	</div>
@@ -12,20 +12,20 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	setTimeout(updateStatus, 2000);
-});
+// $(document).ready(function(){
+// 	setTimeout(updateStatus, 2000);
+// });
 
-function updateStatus(){
-	var url = $('#result_container').attr('data-url');
-	$.get( url, function( data ) {
-		if(data.is_done == true){
-			$('#result').html(data.result);
-			$('#wait_container').hide();
-			$('#result_container').show();
-		}else{
-			setTimeout(updateStatus, 2000);
-		}
-	});
-}
+// function updateStatus(){
+// 	var url = $('#result_container').attr('data-url');
+// 	$.get( url, function( data ) {
+// 		if(data.is_done == true){
+// 			$('#result').html(data.result);
+// 			$('#wait_container').hide();
+// 			$('#result_container').show();
+// 		}else{
+// 			setTimeout(updateStatus, 2000);
+// 		}
+// 	});
+// }
 </script>

@@ -3,7 +3,7 @@ require 'mechanize'
 class ScrapedResult < ActiveRecord::Base
 
 	def airmiles_scrape(account_num, password)
-	  agent = Mechanize.new
+	  agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
 	  agent.user_agent_alias = 'Mac Safari'
 	  pass = SymmetricEncryption.decrypt(password)
 
@@ -32,11 +32,12 @@ class ScrapedResult < ActiveRecord::Base
 				self.result = "Incorrect Airmiles Number or Pin was entered.\n#{error_msg}"	
 			end
 			self.save!
+			return self
 		end
 	end
 
 	def aeroplan_scrape(account_num, password)
-		agent = Mechanize.new
+		agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
 		agent.user_agent_alias = 'Mac Safari'
 		pass = SymmetricEncryption.decrypt(password)
 
@@ -74,11 +75,12 @@ class ScrapedResult < ActiveRecord::Base
 				self.save!
 			end	
 		end
+		
 	end
 
 
 	def starbucks_scrape(username, password)
-		agent = Mechanize.new
+		agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
 		agent.user_agent_alias = 'Mac Safari'
 		pass = SymmetricEncryption.decrypt(password)
 
@@ -109,12 +111,13 @@ class ScrapedResult < ActiveRecord::Base
 
 			end
 			self.save!
+			
 		end
 	end
 
 
 	def united_scrape(username, password)
-		agent = Mechanize.new
+		agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
 		agent.user_agent_alias = 'Mac Safari'
 		pass = SymmetricEncryption.decrypt(password)
 
@@ -145,6 +148,7 @@ class ScrapedResult < ActiveRecord::Base
 				end		
 			end
 			self.save!
+
 		end
 	end
 
