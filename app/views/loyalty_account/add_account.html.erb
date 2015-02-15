@@ -1,6 +1,6 @@
 
 <div class="container">
-	<div class="content">
+	<div id="main_content" class="content">
 		<h2>Check Your Loyalty Rewards</h2>
 		
 			<h5>This is a simple application that uses Mechanize to auto-fill web forms to retrieve the current rewards that you have from your loyalty plan provider. </h5>
@@ -28,6 +28,11 @@
 			<% end %>
 		</div>
 	</div>
+	<div id="wait_container">
+		<div class="content">
+		<h2>Loading. Please Wait. <i class="fa fa-spinner fa-spin"></i> </h2>
+	</div>
+</div>
 </div>
 
 <script>
@@ -55,6 +60,8 @@ $( "#form_add_account" ).submit(function( event ) {
 		event.preventDefault();
 	}else{
 		$('#btn_submit').attr('disabled','disabled');
+		$('#main_content').hide();
+		$('#wait_container').show();
 	}
 });
 
