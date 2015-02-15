@@ -3,7 +3,7 @@ require 'mechanize'
 class ScrapedResult < ActiveRecord::Base
 
 	def airmiles_scrape(account_num, password)
-	  agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+	  agent = Mechanize.new
 	  agent.user_agent_alias = 'Mac Safari'
 	  pass = SymmetricEncryption.decrypt(password)
 
@@ -37,7 +37,7 @@ class ScrapedResult < ActiveRecord::Base
 	end
 
 	def aeroplan_scrape(account_num, password)
-		agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+		agent = Mechanize.new
 		agent.user_agent_alias = 'Mac Safari'
 		pass = SymmetricEncryption.decrypt(password)
 
@@ -80,7 +80,7 @@ class ScrapedResult < ActiveRecord::Base
 
 
 	def starbucks_scrape(username, password)
-		agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+		agent = Mechanize.new{|a| a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE}
 		agent.user_agent_alias = 'Mac Safari'
 		pass = SymmetricEncryption.decrypt(password)
 
@@ -92,8 +92,8 @@ class ScrapedResult < ActiveRecord::Base
 			self.save!
 		else
 			starbucks_form = page.form_with(:dom_id => "accountForm")
-			starbucks_form.field_with(:dom_id => "Account_UserName").value = username
-			starbucks_form.field_with(:dom_id => "Account_PassWord").value = pass
+			starbucks_form.field_with(:dom_class => "field_full_in_single_col").value = username
+			starbucks_form.field_with(:dom_class => "field_full_in_single_col password").value = pass
 			
 			page = starbucks_form.submit()
 
@@ -117,7 +117,7 @@ class ScrapedResult < ActiveRecord::Base
 
 
 	def united_scrape(username, password)
-		agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+		agent = Mechanize.new
 		agent.user_agent_alias = 'Mac Safari'
 		pass = SymmetricEncryption.decrypt(password)
 
